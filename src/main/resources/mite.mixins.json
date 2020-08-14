@@ -5,9 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "block.BlockMixin",
+    "block.ServerPlayerInteractionManagerMixin",
     "boat.BoatEntityMixin",
     "creeper.CreeperEntityMixin",
     "enderman.EndermanEntityMixin",
+    "guardian.GuardianEntityMixin",
     "guardian.GuardianSpawnInDeepFrozenOceanMixin",
     "guardian.GuardianSpawnInDeepLukewarmOceanMixin",
     "guardian.GuardianSpawnInDeepOceanMixin",
@@ -16,17 +18,26 @@
     "guardian.GuardianSpawnInLukewarmOceanMixin",
     "guardian.GuardianSpawnInOceanMixin",
     "guardian.GuardianSpawnInWarmOceanMixin",
+    "hoglin.HoglinEntityMixin",
+    "hoglin.ZoglinEntityMixin",
+    "netherportal.ChangePortalMixin",
+    "phantom.PhantomEntityMixin",
+    "piglin.PiglinEntityMixin",
+    "piglin.PiglinSpecificSensorMixin",
+    "piglin.ZombifiedPiglinEntityMixin",
+    "player.LivingEntityMixin",
+    "player.ServerPlayerEntityMixin",
+    "player.ServerWorldMixin",
     "skeleton.SkeletonEntityMixin",
     "spawn.SpawnHelperMixin",
+    "weather.IWeatherThunderMixin",
+    "weather.WeatherThunderMixin",
+    "zombie.IMobEntityMixin",
     "zombie.ZombieEntityMixin"
   ],
   "client": [
   ],
   "server": [
-    "block.ServerPlayerInteractionManagerMixin",
-    "weather.IWeatherThunderMixin",
-    "weather.WeatherThunderMixin",
-    "player.ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

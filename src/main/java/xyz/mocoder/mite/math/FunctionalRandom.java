@@ -4,7 +4,7 @@ import java.util.Random;
 
 import static java.lang.Math.*;
 
-//该类用于雷雨天雷电生成位置的计算,使用Box-Muller算法
+//该类用于雷雨天雷电生成位置的计算,使用Box-Muller算法生成正态分布
 public class FunctionalRandom {
     //Box-Muller算法,玩家周围一定距离不生成雷电
     public static double generateRandom(Random random) {

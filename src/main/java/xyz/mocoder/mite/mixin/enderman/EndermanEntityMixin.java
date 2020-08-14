@@ -5,9 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.EndermiteEntity;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -59,6 +62,13 @@ public abstract class EndermanEntityMixin extends LivingEntity {
                 Block.dropStacks(state,thi.world,ps);
             }
         }
+    }
+
+    //伤害增加
+    @Inject(method="createEndermanAttributes",at=@At("HEAD"),cancellable = true)
+    private static void bonusDamage(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir){
+        cir.setReturnValue(HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.75D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 14.0D).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D));
+        cir.cancel();
     }
 
 }

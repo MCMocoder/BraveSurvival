@@ -3,6 +3,8 @@ package xyz.mocoder.mite.mixin.zombie;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.ZombieEntity;
@@ -14,10 +16,12 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ZombieEntity.class)
-public abstract class ZombieEntityMixin extends MobEntity {
+public abstract class ZombieEntityMixin extends MobEntity implements IMobEntityMixin{
 
     protected ZombieEntityMixin(EntityType<? extends MobEntity> entityType, World world) {
         super(entityType, world);
@@ -135,5 +139,19 @@ public abstract class ZombieEntityMixin extends MobEntity {
                 }
             }
         }
+    }
+    
+    //增加伤害/追踪范围/速度
+    @Inject(method="createZombieAttributes",at=@At("HEAD"),cancellable = true)
+    private static void bonusDamage(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
+        cir.setReturnValue(HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 55.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0D).add(EntityAttributes.GENERIC_ARMOR, 3.0D).add(EntityAttributes.ZOMBIE_SPAWN_REINFORCEMENTS));
+        cir.cancel();
+    }
+
+    //不会燃烧
+    @Inject(method="burnsInDaylight",at=@At("HEAD"),cancellable=true)
+    private void noBurn(CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(false);
+        cir.cancel();
     }
 }

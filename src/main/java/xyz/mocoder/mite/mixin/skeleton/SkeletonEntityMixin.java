@@ -142,8 +142,14 @@ public abstract class SkeletonEntityMixin extends MobEntity {
     //伤害
     @ModifyVariable(method="attack",at=@At("HEAD"))
     private float advanceDamage(float pullProgress) {
-        pullProgress=world.getRandom().nextInt(6)+pullProgress+5;
+        pullProgress=world.getRandom().nextInt(6)+10;
         return pullProgress;
+    }
+
+    //白天不燃烧
+    @Redirect(method="tickMovement",at=@At(value="INVOKE",target="Lnet/minecraft/entity/mob/AbstractSkeletonEntity;isInDaylight()Z"))
+    private boolean noBurn(AbstractSkeletonEntity abstractSkeletonEntity){
+        return false;
     }
 
 }

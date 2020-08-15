@@ -1,0 +1,43 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.mocoder.mite.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "block.BlockMixin",
+    "block.ServerPlayerInteractionManagerMixin",
+    "boat.BoatEntityMixin",
+    "creeper.CreeperEntityMixin",
+    "enderman.EndermanEntityMixin",
+    "guardian.GuardianEntityMixin",
+    "guardian.GuardianSpawnInOceanMixin",
+    "hoglin.HoglinEntityMixin",
+    "hoglin.ZoglinEntityMixin",
+    "irongolem.IronGolemEntityMixin"
+    "item.ShieldMixin",
+    "netherportal.ChangePortalMixin",
+    "phantom.PhantomEntityMixin",
+    "piglin.PiglinEntityMixin",
+    "piglin.PiglinSpecificSensorMixin",
+    "piglin.ZombifiedPiglinEntityMixin",
+    "player.IPlayerEntityMixin",
+    "player.LivingEntityMixin",
+    "player.PlayerEntityMixin",
+    "player.ServerPlayerEntityMixin",
+    "player.ServerWorldMixin",
+    "skeleton.SkeletonEntityMixin",
+    "spawn.SpawnHelperMixin",
+    "spider.SpiderEntityMixin",
+    "weather.IWeatherThunderMixin",
+    "weather.WeatherThunderMixin",
+    "zombie.IMobEntityMixin",
+    "zombie.ZombieEntityMixin"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

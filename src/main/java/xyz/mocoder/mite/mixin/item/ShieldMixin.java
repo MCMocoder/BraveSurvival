@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Items.class)
 public abstract class ShieldMixin {
-    @Final
+    /*@Final
     @Shadow
-    public static final Item SHIELD= Registry.register(Registry.ITEM,new Identifier("shield"),new ShieldItem((new Item.Settings()).maxDamage(50).group(ItemGroup.COMBAT)));
+    public static final Item SHIELD= Registry.set(Registry.ITEM,new Identifier("shield"),new ShieldItem((new Item.Settings()).maxDamage(50).group(ItemGroup.COMBAT)));*/
 }

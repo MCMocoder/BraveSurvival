@@ -13,7 +13,7 @@
     "guardian.GuardianSpawnInOceanMixin",
     "hoglin.HoglinEntityMixin",
     "hoglin.ZoglinEntityMixin",
-    "irongolem.IronGolemEntityMixin"
+    "irongolem.IronGolemEntityMixin",
     "item.ShieldMixin",
     "netherportal.ChangePortalMixin",
     "phantom.PhantomEntityMixin",

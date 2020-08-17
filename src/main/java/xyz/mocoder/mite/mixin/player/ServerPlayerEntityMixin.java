@@ -147,7 +147,7 @@ public abstract class ServerPlayerEntityMixin {
         int posz=(int)pos.z;
         for(int i=-2;i<=2;++i) {
             for(int k=-2;k<=2;++k) {
-                for(int j=0;j<=2;++j){
+                for(int j=-1;j<=2;++j){
                     if(thi.world.getBlockState(new BlockPos(new Vec3d(posx+i,posy+j,posz+k))).getBlock()==Blocks.LAVA) {
                         return true;
                     }
@@ -205,7 +205,7 @@ public abstract class ServerPlayerEntityMixin {
     }
 
     //一定概率随机传送
-    @Inject(method="moveToWorld",at=@At(value="INVOKE",target="Lnet/minecraft/server/network/ServerPlayerEntity;refreshPositionAfterTeleport(DDD)V"),locals= LocalCapture.PRINT)
+    @Inject(method="moveToWorld",at=@At(value="INVOKE",target="Lnet/minecraft/server/network/ServerPlayerEntity;refreshPositionAfterTeleport(DDD)V"),locals= LocalCapture.CAPTURE_FAILEXCEPTION)
     private void randomDestination(ServerWorld destination, CallbackInfoReturnable<Entity> cir, ServerWorld serverWorld, RegistryKey registryKey, WorldProperties worldProperties, PlayerManager playerManager, TeleportTarget teleportTarget) {
         if(serverWorld.random.nextInt(512)==0){
             teleportTarget.position.add(serverWorld.random.nextDouble()*128.0D, 0,serverWorld.random.nextDouble()*128.0D);

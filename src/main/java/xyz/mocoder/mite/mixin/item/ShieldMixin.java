@@ -16,7 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Items.class)
 public abstract class ShieldMixin {
-    /*@Final
-    @Shadow
-    public static final Item SHIELD= Registry.set(Registry.ITEM,new Identifier("shield"),new ShieldItem((new Item.Settings()).maxDamage(50).group(ItemGroup.COMBAT)));*/
+    @Inject(method="register(Lnet/minecraft/util/Identifier;Lnet/minecraft/item/Item;)Lnet/minecraft/item/Item;",at=@At(value="HEAD"),cancellable = true)
+    private static void changeItemSetting(Identifier id, Item item, CallbackInfoReturnable<Item> cir) {
+        if(item instanceof ShieldItem) {
+            cir.setReturnValue((Item)Registry.register(Registry.ITEM,id,(Item)(new ShieldItem((new Item.Settings()).maxDamage(200).group(ItemGroup.COMBAT)))));
+            cir.cancel();
+        }
+    }
 }

@@ -46,7 +46,7 @@ public abstract class WeatherThunderMixin implements IWeatherThunderMixin{
                 ServerPlayerEntity randomPlayer=players.get(((ServerWorld)(Object)this).random.nextInt(players.size()));
                 BlockPos movePos=genPos(((ServerWorld)(Object)this).random,dist);
                 BlockPos blockPos3=new BlockPos(new Vec3d(movePos.getX()+randomPlayer.getX(),0,movePos.getZ()+randomPlayer.getZ()));
-                blockPos2 = blockPos3;//callGetSurface(blockPos3);
+                blockPos2 = callGetSurface(blockPos3);
                 if (((ServerWorld) (Object) this).hasRain(blockPos2)) {
                     LocalDifficulty localDifficulty = ((ServerWorld) (Object) this).getLocalDifficulty(blockPos2);
                     boolean bl2 = ((ServerWorld) (Object) this).getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && ((ServerWorld) (Object) this).random.nextDouble() < (double) localDifficulty.getLocalDifficulty() * 0.01D;

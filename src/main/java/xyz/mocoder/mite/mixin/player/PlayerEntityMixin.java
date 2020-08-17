@@ -13,14 +13,27 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Iterator;
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements IPlayerEntityMixin{
+
+    /*private boolean handleFallDamage(Entity entity,float fallDistance,float damageMultiplier) {
+        if (entity.hasPassengers()) {
+
+            for (Entity entity2 : entity.getPassengerList()) {
+                entity2.handleFallDamage(fallDistance, damageMultiplier);
+            }
+        }
+
+        return false;
+    }
 
 
     //增加摔落伤害
     @Redirect(method="handleFallDamage",at=@At(value="INVOKE",target="Lnet/minecraft/entity/LivingEntity;handleFallDamage(FF)Z"))
     private boolean bonusFallDamage(LivingEntity livingEntity, float fallDistance, float damageMultiplier) {
-        boolean bl = ((Entity)livingEntity).handleFallDamage(fallDistance, damageMultiplier);
+        boolean bl = handleFallDamage(livingEntity,fallDistance, damageMultiplier);
         int i = computeFallDamage(livingEntity,fallDistance, damageMultiplier);
         if (i > 0) {
             livingEntity.playSound(((IPlayerEntityMixin)livingEntity).callGetFallSound(i), 1.0F, 1.0F);
@@ -35,8 +48,8 @@ public abstract class PlayerEntityMixin implements IPlayerEntityMixin{
     private int computeFallDamage(LivingEntity entity,float fallDistance,float damageMultiplier) {
         StatusEffectInstance statusEffectInstance = entity.getStatusEffect(StatusEffects.JUMP_BOOST);
         float f = statusEffectInstance == null ? 0.0F : (float)(statusEffectInstance.getAmplifier() + 1);
-        return MathHelper.ceil((fallDistance + 13.0F - f) * damageMultiplier);
-    }
+        return MathHelper.ceil((fallDistance - f) * damageMultiplier);
+    }*/
 
     //摔落后获得debuff
     @Inject(method="handleFallDamage",at=@At(value="RETURN"))

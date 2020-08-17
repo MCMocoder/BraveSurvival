@@ -142,7 +142,7 @@ public abstract class SkeletonEntityMixin extends MobEntity {
     //伤害
     @ModifyVariable(method="attack",at=@At("HEAD"))
     private float advanceDamage(float pullProgress) {
-        pullProgress=world.getRandom().nextInt(6)+10;
+        pullProgress=world.getRandom().nextInt(6)+7;
         return pullProgress;
     }
 
